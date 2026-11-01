@@ -57,10 +57,7 @@ export function Navbar() {
           aria-label="Portfolio home"
           onClick={() => setMenuOpen(false)}
         >
-          <span className="wordmark-bracket">[</span>
-          {portfolio.initials}
-          <span className="wordmark-bracket">]</span>
-          <span className="wordmark-dot">.</span>
+          <img src="/ja-logo.svg" alt="" width="44" height="44" />
         </a>
         <div className="rail-identity">
           <p className="rail-name">{portfolio.name}</p>
