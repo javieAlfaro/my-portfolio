@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, Mail, Menu, X } from 'lucide-react'
 import { Github, Linkedin } from './Contact'
 import { ThemeToggle } from './ThemeToggle'
+import { SoundToggle } from './SoundToggle'
 import { navigation, portfolio } from '../data/portfolio'
 import { useActiveSection } from '../hooks/useActiveSection'
 
@@ -105,7 +106,14 @@ export function Navbar() {
             </a>
           )}
         </div>
-        <ThemeToggle />
+        <div
+          className="rail-controls"
+          role="group"
+          aria-label="Appearance and sound"
+        >
+          <ThemeToggle />
+          <SoundToggle />
+        </div>
         <button
           ref={menuButton}
           type="button"
