@@ -1647,16 +1647,21 @@ a.button-secondary:hover {
   border-radius: 50%;
   background: transparent;
   color: var(--color-secondary);
-  transition: color 180ms, border-color 180ms, background-color 180ms;
+  transition:
+    color 180ms,
+    border-color 180ms,
+    background-color 180ms;
 }
 .theme-toggle:hover {
   color: var(--color-accent);
   background: color-mix(in srgb, var(--color-accent) 8%, transparent);
 }
-.theme-toggle:focus-visible { color: var(--color-accent); }
+.theme-toggle:focus-visible {
+  color: var(--color-accent);
+}
 @media (min-width: 1024px) {
-  .rail-socials + .theme-toggle {
-    margin-top: 96px;
+  .rail-controls {
+    margin-top: 128px;
   }
 }
 .certifications > .content-note {
@@ -1719,13 +1724,13 @@ a.button-secondary:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-@media (min-width: 1024px) {
-  .theme-toggle {
-    margin-top: 96px;
-  }
+.rail-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 @media (max-width: 1023px) {
-  .theme-toggle {
+  .rail-controls {
     margin-left: auto;
   }
 }
