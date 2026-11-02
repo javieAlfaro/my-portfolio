@@ -55,15 +55,17 @@ export function Skills() {
       </div>
       <Reveal className="certifications">
         <h3>Certifications</h3>
-        <p className="content-note">A space for my earned certifications.</p>
+        <p className="content-note">
+          Credentials in data, cloud, development, and security.
+        </p>
         <div className="certification-grid">
-          {[1, 2].map((number) => (
-            <article className="certification-card" key={number}>
+          {portfolio.certifications.map((certification) => (
+            <article className="certification-card" key={certification.id}>
               <Award size={25} className="text-accent" aria-hidden="true" />
-              <p className="content-label">CERTIFICATION TO ADD</p>
-              <h4>[Certification name]</h4>
-              <p>[Issuing organization · Date earned]</p>
-              <p className="content-note">[Credential link or certificate]</p>
+              <h4>{certification.name}</h4>
+              <p>
+                {certification.issuer} · {certification.date}
+              </p>
             </article>
           ))}
         </div>

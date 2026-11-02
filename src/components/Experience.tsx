@@ -20,26 +20,31 @@ export function Experience() {
         />
       </Reveal>
       <div className="experience-list">
-        <Reveal className="experience-entry">
-          <BriefcaseBusiness
-            size={23}
-            className="text-accent"
-            aria-hidden="true"
-          />
-          <div>
-            <h3>Work experience</h3>
-            <p className="content-label">TO ADD</p>
-            <p>[Role · Organization · Dates]</p>
-            <p className="content-note">
-              [Your responsibilities, contributions, and achievements.]
-            </p>
-          </div>
-        </Reveal>
+        {portfolio.workExperience.map((experience) => (
+          <Reveal key={experience.id} className="experience-entry">
+            <BriefcaseBusiness
+              size={23}
+              className="text-accent"
+              aria-hidden="true"
+            />
+            <div>
+              <h3>{experience.role}</h3>
+              <p>{experience.organization}</p>
+              <p className="content-label">{experience.dates}</p>
+              <ul className="experience-highlights">
+                {experience.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        ))}
         <Reveal className="experience-entry">
           <GraduationCap size={23} className="text-accent" aria-hidden="true" />
           <div>
             <h3>Education</h3>
             <p>{portfolio.education ?? '[Degree · Institution · Dates]'}</p>
+            <p>{portfolio.educationHonors.join(' · ')}</p>
           </div>
         </Reveal>
       </div>

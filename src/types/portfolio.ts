@@ -16,6 +16,21 @@ export interface Project {
   image?: { src: string; alt: string }
 }
 
+export interface WorkExperience {
+  id: string
+  role: string
+  organization: string
+  dates: string
+  highlights: string[]
+}
+
+export interface Certification {
+  id: string
+  name: string
+  issuer: string
+  date: string
+}
+
 export interface Portfolio {
   name: string
   initials: string
@@ -24,6 +39,9 @@ export interface Portfolio {
   introduction: string
   about: string[]
   education: string | null
+  educationHonors: string[]
+  workExperience: WorkExperience[]
+  certifications: Certification[]
   location: string | null
   email: string | null
   githubUrl: string | null

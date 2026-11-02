@@ -1782,3 +1782,24 @@ a.button-secondary:hover {
     background: transparent;
   }
 }
+.experience-entry > div {
+  min-width: 0;
+}
+.experience-highlights {
+  margin: 16px 0 0;
+  padding-left: 20px;
+  color: var(--color-secondary);
+  font-size: 14px;
+  line-height: 1.75;
+  list-style: disc;
+}
+.experience-highlights li + li {
+  margin-top: 12px;
+}
+.certification-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.certification-card h4 {
+  line-height: 1.5;
+}
