@@ -91,8 +91,10 @@ This enables the inline PDF preview, the open-in-tab fallback, and the download 
 
 Edit the colors and fonts in `src/index.css` first. Section layouts and responsive rules live there too, while the components control structure. Your personal data can stay intact as the design changes. The accent is **soft emerald #6EE7B7**, with navy #0F172A as the background. On desktop, a compact identity and navigation rail sits beside the complete scrolling portfolio; below 1024px it becomes a mobile navigation disclosure.
 
-## Before publishing
+## Deployment
 
-Replace personal placeholders, proofread the draft copy, add your real PDF, update metadata, and check every real external link. Run the build and formatting checks. Review keyboard navigation, mobile layouts, and reduced-motion mode. Deploy the generated `dist/` directory to a static host when ready; no server or environment secrets are needed. This version has not been published.
+Vercel deploys the portfolio when changes are pushed to `main`. Run `npm run build` locally before pushing website changes to check that the production build succeeds.
+
+To update the resume preview and download, replace `public/resume.pdf`. Keep the filename the same so the existing links continue to work.
 
 Setup references: [Vite](https://vite.dev/guide/), [Tailwind with Vite](https://tailwindcss.com/docs/installation/using-vite), [Motion for React](https://motion.dev/docs/react-installation), and [Lucide React](https://lucide.dev/guide/react).
