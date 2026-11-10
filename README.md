@@ -4,6 +4,16 @@ A single-page portfolio for my software development and data work. It brings tog
 
 [View the live portfolio](https://javiealfaro.vercel.app/) · [Browse selected projects](https://javiealfaro.vercel.app/#projects) · [View my resume](https://javiealfaro.vercel.app/#resume)
 
+## Portfolio preview
+
+**Desktop**
+
+![Desktop portfolio with a navigation sidebar and a two-column layout](docs/screenshots/desktop.png)
+
+**Mobile**
+
+<img src="docs/screenshots/mobile.png" width="360" alt="Mobile portfolio with a compact header and a single-column layout" />
+
 ## Selected projects
 
 - **Chami** — An Android app for my undergraduate thesis that classifies fruit ripeness on the device. I led data preparation and model training and co-developed the app.
