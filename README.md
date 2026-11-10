@@ -1,100 +1,45 @@
-# Personal portfolio
+# Javie Alfaro | Developer Portfolio
 
-A local, static portfolio built with React, Vite, strict TypeScript, Tailwind CSS, Motion for React, and Lucide. It uses self-hosted Inter and JetBrains Mono. There is no backend, database, analytics, or contact form service.
+A single-page portfolio for my software development and data work. It brings together selected projects, internship experience, education, certifications, and a downloadable resume.
+
+[View the live portfolio](https://javiealfaro.vercel.app/) · [Browse selected projects](https://javiealfaro.vercel.app/#projects) · [View my resume](https://javiealfaro.vercel.app/#resume)
+
+## Selected projects
+
+- **Chami** — An Android app for my undergraduate thesis that classifies fruit ripeness on the device. I led data preparation and model training and co-developed the app.
+- **AlfaFocus** — A productivity dashboard with tasks, calendar planning, habit tracking, and focus sessions.
+- **OnlyFunds** — An Android budgeting app that tracks income, expenses, and savings goals and forecasts spending from transaction history.
+
+## How I built the portfolio
+
+| Technology                  | Role in this site                                                                             |
+| --------------------------- | --------------------------------------------------------------------------------------------- |
+| React and TypeScript        | Reusable page sections and a typed model for projects, experience, skills, and certifications |
+| Tailwind CSS                | Shared color and typography tokens, responsive layouts, and component styles                  |
+| Motion for React and Lucide | Scroll reveals and interface icons                                                            |
+| Vite and Vercel             | Local development, production builds, and hosting from GitHub                                 |
+
+- **Content and layout.** The sections read from [one typed content file](src/data/portfolio.ts), so project and experience updates stay separate from presentation. The project filters come from the categories in that data.
+- **Responsive navigation.** A desktop sidebar becomes a collapsible menu on smaller screens. Native anchor links let visitors share section URLs, and the active link follows their scroll position. The site includes keyboard navigation, a skip link, and reduced-motion support.
+- **Browser interactions.** Light and dark themes and optional sound effects use local storage to remember preferences. The resume PDF loads in an embedded viewer only when a visitor requests a preview, with options to open or download it directly.
+- **Static delivery.** Vite builds the site to `dist/`, with fonts bundled locally and the resume served as a static asset. The portfolio runs without a backend, database, or environment variables.
+
+## Explore the code
+
+- [`src/App.tsx`](src/App.tsx) assembles the page and configures shared motion behavior.
+- [`src/components/`](src/components/) contains the page sections and interactive controls.
+- [`src/data/portfolio.ts`](src/data/portfolio.ts) holds the content, with its shape defined in [`src/types/portfolio.ts`](src/types/portfolio.ts).
+- [`src/index.css`](src/index.css) defines theme tokens, component styles, and breakpoints.
 
 ## Run locally
 
-Use Node.js 22.12+ (or a newer supported LTS version). Dependencies are already installed in this workspace.
+Use Node.js 22.12 or a newer supported LTS release. From the repository root:
 
-```powershell
-cd C:\Users\Javie\Documents\my-portfolio
+```sh
+npm ci
 npm run dev
 ```
 
-Open the Local URL printed by Vite, normally http://localhost:5173. Stop the server with Ctrl+C. On a fresh checkout, run `npm ci` first.
+Open the local URL printed by Vite. Run `npm run build` for the production build and `npm run preview` to serve it locally. Use `npm run lint` and `npm run format:check` to check code and formatting.
 
-```sh
-npm run build        # TypeScript checks, then production output in dist/
-npm run preview      # Serve the production build locally
-npm run lint         # Check source with the Vite starter's Oxlint
-npm run format       # Format source and documentation
-npm run format:check # Verify formatting
-```
-
-## Folder structure
-
-```text
-public/                 Static assets: favicon, your PDF, project screenshots
-src/
-  components/           Page sections and small shared UI components
-  data/portfolio.ts     Personal content, skills, projects, links, resume
-  hooks/                Active-section tracking
-  types/portfolio.ts    TypeScript contracts for the content
-  App.tsx               Page composition and shared motion setup
-  index.css             Tailwind theme, component styles, responsive rules
-  main.tsx              React entry point
-index.html              SEO metadata and initial document
-vite.config.ts          React and Tailwind Vite plugins
-```
-
-## Make it yours
-
-Start with `src/data/portfolio.ts`. Replace your name and initials, edit the draft introduction, add your about paragraphs, and fill in education, location, and contact links. Keep optional values as `null` when you are not ready to add them. Empty arrays and nulls produce explicit placeholders; no credentials, statistics, projects, or URLs are invented.
-
-**Skills:** Add only skills you actually use to each category's `skills` array. Rename, add, or remove categories as needed. Category descriptions are editable draft copy.
-
-**Projects:** Replace the empty `projects` array with your real work. This is a schema example only; substitute your actual content:
-
-```ts
-projects: [
-  {
-    id: 'unique-project-id',
-    title: '[Your real project title]',
-    category: '[Your project category]',
-    description: '[The problem, what you built, and an important decision or lesson.]',
-    technologies: [], // Your actual technologies
-    // githubUrl: your actual repository URL,
-    // demoUrl: your actual deployed demo URL,
-    // image: { src: '/projects/your-screenshot.webp', alt: 'Describe the real interface' },
-  },
-],
-```
-
-Missing links display as unavailable. The decorative empty-state illustrations disappear once there are real projects. Multiple distinct categories automatically enable filtering. Optional project screenshots belong in `public/projects/`; use compressed WebP/AVIF images with meaningful alt text. The CSS crops images to the card's preview area.
-
-**Resume:** Add your actual PDF as `public/resume.pdf`. Then set:
-
-```ts
-resume: {
-  url: '/resume.pdf',
-  fileName: 'Your-Name-Resume.pdf',
-},
-```
-
-This enables the inline PDF preview, the open-in-tab fallback, and the download link. The PDF iframe mounts only after someone requests a preview. Keep the PDF on the same origin for reliable `download` behavior. Mobile browsers may open PDFs in their native viewer instead of embedding them. The paper illustration is decorative, not a preview of the actual file. No sample resume is included.
-
-**Contact:** Set your real `email`, `githubUrl`, and `linkedinUrl`. Email uses `mailto:` and opens the visitor's email app. Social and project links open in a new tab with `noopener noreferrer`. There is no form that implies a message was sent.
-
-**SEO:** Update the document title, description, and Open Graph text in `index.html`. After choosing a domain, add a canonical URL, `og:url`, and a real share image with an absolute `og:image` URL. They are intentionally omitted until you have real URLs. The static HTML metadata works for social crawlers without executing React.
-
-## How the implementation works
-
-- `App.tsx` composes sections. Each section reads the typed data; TypeScript helps catch missing required fields before publishing.
-- Tailwind v4 is integrated with `@tailwindcss/vite` and `@import 'tailwindcss'`. The `@theme` block defines reusable colors and fonts. Utilities handle simple layouts; named CSS classes keep detailed visual styles readable. No legacy Tailwind configuration or PostCSS setup is needed.
-- `Reveal` is the one reusable scroll animation. `LazyMotion` and the lightweight `m` component use the DOM animation feature set. CSS handles hover and press feedback. Both Motion and CSS respect reduced-motion preferences.
-- Active navigation uses a passive scroll listener and one scheduled update per frame, with cleanup on unmount. It reads the six section positions and handles the end of the page explicitly. Native hash links preserve browser history and keyboard navigation.
-- The mobile navigation is a disclosure rather than a modal: normal Tab navigation works, Escape closes it and returns focus, and selecting a section closes it. It also closes when crossing the desktop breakpoint.
-- One main landmark, labeled sections, an ordered heading hierarchy, a skip link, real buttons/links, and visible focus outlines provide an accessible baseline. The hero diagram and resume illustration avoid implying credentials.
-- Fonts are bundled locally; no external runtime calls are required. React state is limited to navigation, project filtering, and the PDF disclosure.
-
-## Change the visual direction later
-
-Edit the colors and fonts in `src/index.css` first. Section layouts and responsive rules live there too, while the components control structure. Your personal data can stay intact as the design changes. The accent is **soft emerald #6EE7B7**, with navy #0F172A as the background. On desktop, a compact identity and navigation rail sits beside the complete scrolling portfolio; below 1024px it becomes a mobile navigation disclosure.
-
-## Deployment
-
-Vercel deploys the portfolio when changes are pushed to `main`. Run `npm run build` locally before pushing website changes to check that the production build succeeds.
-
-To update the resume preview and download, replace `public/resume.pdf`. Keep the filename the same so the existing links continue to work.
-
-Setup references: [Vite](https://vite.dev/guide/), [Tailwind with Vite](https://tailwindcss.com/docs/installation/using-vite), [Motion for React](https://motion.dev/docs/react-installation), and [Lucide React](https://lucide.dev/guide/react).
+Vercel deploys pushes to `main`. To update the resume preview and download, replace [`public/resume.pdf`](public/resume.pdf) using the same filename.
