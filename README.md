@@ -16,9 +16,17 @@ A single-page portfolio for my software development and data work. It brings tog
 
 ## Selected projects
 
-- **Chami** — An Android app for my undergraduate thesis that classifies fruit ripeness on the device. I led data preparation and model training and co-developed the app.
-- **AlfaFocus** — A productivity dashboard with tasks, calendar planning, habit tracking, and focus sessions.
-- **OnlyFunds** — An Android budgeting app that tracks income, expenses, and savings goals and forecasts spending from transaction history.
+### Chami
+
+I co-developed this Android app for my undergraduate thesis. It classifies ripeness for three fruit varieties and gives shelf-life guidance. I led data preparation and model training using 1,725 images. The model achieved a 97.67% F1 score on the test data and runs offline through TensorFlow Lite.
+
+### AlfaFocus
+
+I built a productivity dashboard that brings tasks, nested projects, calendar planning, and habit tracking together. It includes a focus timer with three modes and automatic session logging. The React frontend uses an Express API backed by PostgreSQL, with JWT authentication for personal workspaces.
+
+### OnlyFunds
+
+I built an Android budgeting app in Flutter to track income, expenses, and savings goals. It uses linear regression to generate forecasts from up to six months of transaction history. Firebase Authentication handles sign-in, and Cloud Firestore syncs balances and transaction records.
 
 ## How I built the portfolio
 
@@ -33,6 +41,12 @@ A single-page portfolio for my software development and data work. It brings tog
 - **Responsive navigation.** A desktop sidebar becomes a collapsible menu on smaller screens. Native anchor links let visitors share section URLs, and the active link follows their scroll position. The site includes keyboard navigation, a skip link, and reduced-motion support.
 - **Browser interactions.** Light and dark themes and optional sound effects use local storage to remember preferences. The resume PDF loads in an embedded viewer only when a visitor requests a preview, with options to open or download it directly.
 - **Static delivery.** Vite builds the site to `dist/`, with fonts bundled locally and the resume served as a static asset. The portfolio runs without a backend, database, or environment variables.
+
+## A closer look at the implementation
+
+- **Scroll tracking.** The navigation checks which section has crossed a reading line in the viewport. Scroll events are grouped into at most one position check per animation frame. The final section is selected when the visitor reaches the bottom of the page. [Scroll tracking hook](src/hooks/useActiveSection.ts)
+- **Keyboard navigation.** The mobile menu reports whether it is open or closed to assistive technology. Pressing Escape closes it and returns focus to the menu button. [Navigation component](src/components/Navbar.tsx)
+- **Theme on first load.** The HTML reads the saved theme before React starts. On a first visit, it uses the device’s color preference to avoid a flash of the wrong theme. The page title and share description also live in the HTML so they are available before JavaScript runs. [HTML entry point](index.html)
 
 ## Explore the code
 
@@ -50,6 +64,17 @@ npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite. Run `npm run build` for the production build and `npm run preview` to serve it locally. Use `npm run lint` and `npm run format:check` to check code and formatting.
+Open the local URL printed by Vite.
 
-Vercel deploys pushes to `main`. To update the resume preview and download, replace [`public/resume.pdf`](public/resume.pdf) using the same filename.
+| Command                | What it does                                              |
+| ---------------------- | --------------------------------------------------------- |
+| `npm run build`        | Checks TypeScript and builds the static site into `dist/` |
+| `npm run preview`      | Serves the production output locally after a build        |
+| `npm run lint`         | Runs Oxlint                                               |
+| `npm run format:check` | Checks formatting with Prettier                           |
+
+## Updating and deploying
+
+Edit the project descriptions, skills, and experience in the portfolio content file. Add screenshots or other static assets under `public/`. To update the resume preview and download, replace the PDF using the same filename. [Portfolio content](src/data/portfolio.ts) · [Resume PDF](public/resume.pdf)
+
+Vercel deploys pushes to `main`. Run `npm run build` locally before pushing site changes to catch TypeScript or build errors.
