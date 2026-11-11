@@ -58,7 +58,7 @@ export function Navbar() {
           aria-label="Portfolio home"
           onClick={() => setMenuOpen(false)}
         >
-          <img src="/ja-logo.svg" alt="" width="44" height="44" />
+          <img src="/ja-logo.png" alt="" width="44" height="44" />
         </a>
         <div className="rail-identity">
           <p className="rail-name">{portfolio.name}</p>
